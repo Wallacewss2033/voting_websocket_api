@@ -15,22 +15,18 @@ class AuthController extends Controller
     {
         // TODO: Tratar o FormRequest
 
-        // $credentials = $request->only('email', 'password');
+        $credentials = $request->only('email', 'password');
 
-        // if (!auth()->attempt($credentials)) {
-        //     return response()->json(['message' => 'Credenciais inválidas'], 401);
-        // }
+        if (!auth()->attempt($credentials)) {
+            return response()->json(['message' => 'Credenciais inválidas'], 401);
+        }
 
-        // return response()->json([
-        //     'message' => 'Logado com sucesso!',
-        //     'data' => [
-        //         'token' => auth()->user()->createToken('auth-token')->plainTextToken,
-        //     ]
-        // ], 200);
-        $removeBg = new RemoveBackgroundService($request->base);
-        // $removeBg->removeBgUrl();
-        //$removeBg->removeBgFile();
-        $removeBg->removeBgBase64();
+        return response()->json([
+            'message' => 'Logado com sucesso!',
+            'data' => [
+                'token' => auth()->user()->createToken('auth-token')->plainTextToken,
+            ]
+        ], 200);
     }
 
     public function register(Request $request, User $user): JsonResponse
