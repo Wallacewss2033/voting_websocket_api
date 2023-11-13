@@ -1,8 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\PaymentController;
-use App\Models\Payment;
+use App\Http\Controllers\VotingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::post('/logout', [AuthController::class], 'logout');
 });
 
-Route::post('/teste', [PaymentController::class, 'index']);
+Route::post('/voting', [VotingController::class, 'store']);
